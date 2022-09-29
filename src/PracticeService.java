@@ -10,6 +10,7 @@ public final class PracticeService extends VotingService {
         answers.add("ans C");
         answers.add("ans D");
         newQuestion("This is a question?", answers);
+        answers.clear();
         
         answers.add("ans 1");
         answers.add("ans 2");

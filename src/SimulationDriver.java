@@ -4,11 +4,13 @@ public class SimulationDriver
 {
 	public static void main(String[] args)
 	{
+		// Set up
 		PracticeService myPracticeService = new PracticeService();
 		myPracticeService.init();
 		Question Q = myPracticeService.pickQuestionRan();
 		Vector<String> answers = Q.getAnswers();
 
+		// Automate student answers
 		for (int i = 0; i < 10; i++) {
 			Student myStudent = new Student();
 			myStudent.init(String.valueOf(i));
