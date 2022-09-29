@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class VotingService {
     private Vector<Question> questions = new Vector<>();
-    Map<String, String> answers = new HashMap<String, String>();
-    Map<Vector<Question>, Map<String, String>> QnA = new HashMap<Vector<Question>, Map<String, String>>();
+    private Vector<Vector<String>> answersVec = new Vector<>();
+    private Map<String, String> answersMap = new HashMap<String, String>();
     private Vector<String> IDs = new Vector<>();
 
     protected void newQuestion(String Q, Vector<String> As) {
@@ -16,14 +16,15 @@ public class VotingService {
 
     public Question pickQuestionRan() { 
         int ranIndex = (int)(Math.random() * questions.size());
-        return questions.get(ranIndex);
+        Question Q = questions.get(ranIndex);
+        answersVec.add(Q.getAnswers());
+        return Q;
     }
     
     public void vote (String id, String answer) {
         if (!IDs.contains(id))
             IDs.add(id);
-        answers.put(id, answer); // Link answer to student's ID
-        QnA.put(questions, answers);
+        answersMap.put(id, answer); // Link answer to student's ID
     }
 
     public void printResults() {
@@ -34,15 +35,15 @@ public class VotingService {
             System.out.println("Question: " + currentQ.getQuestion());
 
             // Loop through Answers
-            for (int k = 0; k < currentQ.getAnswerCount(); k++) {
+            for (int k = 0; k < answersVec.get(i).size(); k++) {
                 // Print current Answer
-                String currentA = currentQ.getAnswer(k);
+                String currentA = (answersVec.get(i)).get(k);
                 System.out.println("Answer: " + currentA);
 
                 // Tally amount of votes for current Answer
                 int ansTally = 0;
-                for (int j = 0; j < answers.size(); j++) {
-                    if (answers.get(IDs.get(j)) == currentA) ansTally++;
+                for (int j = 0; j < answersMap.size(); j++) {
+                    if (answersMap.get(IDs.get(j)) == currentA) ansTally++;
                 }
                 // Print Tally
                 System.out.println("Total: " + String.valueOf(ansTally));
