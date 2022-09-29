@@ -1,0 +1,18 @@
+import java.util.Vector;
+
+public class Person {
+    private int ID;
+
+    public String pickAnswer(String Q, Vector<String> As) { 
+        int ranIndex = (int)(Math.random() * As.size());
+        return As.get(ranIndex);
+    }
+
+    public void init(int myId) {
+        ID = myId;
+    }
+
+    public int getId() {
+        return ID;
+    }
+}
