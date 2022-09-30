@@ -3,6 +3,7 @@ import java.util.Vector;
 public final class Question {
    String question;
    private Vector<String> answers = new Vector<>();
+   private boolean multipleChoice;
 
    private void setQuestion(String Q) {
       question = Q;
@@ -15,9 +16,10 @@ public final class Question {
       answers.add(A);
    }*/
    
-   public void init(String Q, Vector<String> As) {
+   public void init(boolean MC, String Q, Vector<String> As) {
       setQuestion(Q);
       setAnswers(As);
+      multipleChoice = MC;
    }
 
    public String getQuestion() {

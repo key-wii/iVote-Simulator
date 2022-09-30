@@ -1,21 +1,40 @@
 import java.util.Vector;
 
 public final class PracticeService extends VotingService {
-    String question;
-    Vector<String> answers = new Vector<>();
+    private Vector<String> answers = new Vector<>();
 
-    public void init() {
-        answers.add("ans A");
-        answers.add("ans B");
-        answers.add("ans C");
-        answers.add("ans D");
-        newQuestion("This is a question?", answers);
+    public void askQuestion(boolean mc, String q, String a, String b) {
         answers.clear();
-        
-        answers.add("ans 1");
-        answers.add("ans 2");
-        answers.add("ans 3");
-        answers.add("ans 4");
-        newQuestion("This is a question!!", answers);
+        answers.add(a);
+        answers.add(b);
+        question = newQuestion(mc, q, answers);
+    }
+    public void askQuestion(boolean mc, String q, String a, String b, String c) {
+        answers.clear();
+        answers.add(a);
+        answers.add(b);
+        answers.add(c);
+        question = newQuestion(mc, q, answers);
+    }
+    public void askQuestion(boolean mc, String q, String a, String b, String c, String d) {
+        answers.clear();
+        answers.add(a);
+        answers.add(b);
+        answers.add(c);
+        answers.add(d);
+        question = newQuestion(mc, q, answers);
+    }
+    public void askQuestion(boolean mc, String q, String a, String b, String c, String d, String e) {
+        answers.clear();
+        answers.add(a);
+        answers.add(b);
+        answers.add(c);
+        answers.add(d);
+        answers.add(e);
+        question = newQuestion(mc, q, answers);
+    }
+
+    public Vector<String> getAnswers() {
+        return question.getAnswers();
     }
 }

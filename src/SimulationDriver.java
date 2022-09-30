@@ -6,20 +6,30 @@ public class SimulationDriver
 	{
 		// Set up
 		PracticeService myPracticeService = new PracticeService();
-		myPracticeService.init();
-		Question Q = myPracticeService.pickQuestionRan();
-		Vector<String> answers = Q.getAnswers();
-
 		int min = 10;
-		int max = 12;
-		double ran = Math.random() * (max - min);
-		// Automate student answers
-		for (int i = 0; i < min + ran; i++) {
-			Student myStudent = new Student();
-			myStudent.init(String.valueOf(i));
-			myPracticeService.vote(myStudent.getId(), myStudent.pickAnswerRan(answers));
-		}
+		int max = 15;
+		int students = (int)Math.floor(Math.random() * (max - min + 1) + min); // + 1 is to make up for floor function
 
-		myPracticeService.printResults();
+		myPracticeService.askQuestion(false, "q", "A", "B");
+		Vector<String> answers = myPracticeService.getAnswers();
+		// Automate student answers
+		for (int i = 0; i < students; i++) {
+			Student currentStudent = new Student();
+			currentStudent.init(String.valueOf(i));
+			myPracticeService.vote(currentStudent.getId(), currentStudent.pickAnswerRan(answers));
+		}
+		myPracticeService.printResult();
+
+		myPracticeService.askQuestion(false, "q2", "1", "2", "3");
+		answers = myPracticeService.getAnswers();
+		// Automate student answers
+		for (int i = 0; i < students; i++) {
+			Student currentStudent = new Student();
+			currentStudent.init(String.valueOf(i));
+			myPracticeService.vote(currentStudent.getId(), currentStudent.pickAnswerRan(answers));
+		}
+		myPracticeService.printResult();
+
+		System.out.println("Students: " +  students);
 	}
 }
