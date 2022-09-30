@@ -4,9 +4,11 @@ import java.util.HashMap;
 
 public class VotingService {
     protected Question question;
+    private Vector<String> IDs = new Vector<>();
     private Vector<String> answersVec = new Vector<>();
     private Map<String, String> answersMap = new HashMap<String, String>();
-    private Vector<String> IDs = new Vector<>();
+    private Vector<Vector<String>> answersVecMC = new Vector<>();
+    private Map<String, Vector<String>> answersMapMC = new HashMap<String, Vector<String>>();
 
     public Question newQuestion(boolean MC, String Qstr, Vector<String> As) {
 		Question myQuestion = new Question();
@@ -20,6 +22,11 @@ public class VotingService {
         if (!IDs.contains(id))
             IDs.add(id);
         answersMap.put(id, answer); // Link answer to student's ID
+    }
+    public void vote(String id, Vector<String> answer) {
+        if (!IDs.contains(id))
+            IDs.add(id);
+        answersMapMC.put(id, answer); // Link answer to student's ID
     }
 
     public void printResult() {

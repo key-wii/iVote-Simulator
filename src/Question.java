@@ -11,10 +11,6 @@ public final class Question {
    private void setAnswers(Vector<String> As) {
       answers = As;
    }
-
-   /*public void addAnswer(String A) {
-      answers.add(A);
-   }*/
    
    public void init(boolean MC, String Q, Vector<String> As) {
       setQuestion(Q);
